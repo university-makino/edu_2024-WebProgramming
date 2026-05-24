@@ -1,39 +1,39 @@
-name: auto create dir
+# name: auto create dir
 
-on:
-  schedule:
-    - cron: '0 22 * * wed'
+# on:
+#   schedule:
+#     - cron: '0 22 * * wed'
 
-jobs:
-  auto_create:
-    runs-on: ubuntu-latest
+# jobs:
+#   auto_create:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Git checkout
-      uses: actions/checkout@v4
+#     steps:
+#     - name: Git checkout
+#       uses: actions/checkout@v4
 
-    - name: Set Timezone JST
-      run: sudo timedatectl set-timezone Asia/Tokyo
+#     - name: Set Timezone JST
+#       run: sudo timedatectl set-timezone Asia/Tokyo
 
-    - name: setup python
-      uses: actions/setup-python@v5.1.1
-      with:
-        python-version: '3.11.5'
+#     - name: setup python
+#       uses: actions/setup-python@v5.1.1
+#       with:
+#         python-version: '3.11.5'
 
-    - name: Create Directory
-      run: python dir_maker.py
+#     - name: Create Directory
+#       run: python dir_maker.py
 
-    - name: set git config
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+#     - name: set git config
+#       run: |
+#         git config user.name "github-actions[bot]"
+#         git config user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Create pull request
-      uses: peter-evans/create-pull-request@v5
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        base: main
-        author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-        delete-branch: true
-        title: "CI: 本日分の空ファイル作成"
-        body: "This is an automatically generated PR from GitHub Actions"
+#     - name: Create pull request
+#       uses: peter-evans/create-pull-request@v5
+#       with:
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#         base: main
+#         author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+#         delete-branch: true
+#         title: "CI: 本日分の空ファイル作成"
+#         body: "This is an automatically generated PR from GitHub Actions"
